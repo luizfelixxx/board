@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.liquibase:liquibase-core:4.29.1'
+    implementation 'org.postgresql:postgresql:42.7.2'
+    compileOnly 'org.projectlombok:lombok:1.18.26'
+    annotationProcessor 'org.projectlombok:lombok:1.18.26'
+}
+
+tasks.register('run', JavaExec) {
+    group = "application"
+    description = "Executa a aplicação Java"
+
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = "org.example.Main" // Troque pelo nome correto da sua classe principal
+}
+test {
+    useJUnitPlatform()
+}
